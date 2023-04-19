@@ -17,31 +17,36 @@ public class DoblementeEnlazadaCircular {
         ListaDoblementeEnlazadaCircula lista = new ListaDoblementeEnlazadaCircula();
 
         // Agregar elementos al principio de la lista
-        lista.addFirst("Elemento 1");
-        lista.addFirst("Elemento 2");
-        lista.addFirst("Elemento 3");
+        lista.agregarAlInicio("Elemento 1");
+        lista.agregarAlInicio("Elemento 2");
+        lista.agregarAlInicio("Elemento 3");
 
         // Agregar elementos al final de la lista
-        lista.addLast("Elemento 4");
-        lista.addLast("Elemento 5");
-        lista.addLast("Elemento 6");
+        lista.agregarAlFinal("Elemento 4");
+        lista.agregarAlFinal("Elemento 5");
+        lista.agregarAlFinal("Elemento 6");
 
+        lista.agregarPorIndice(3, "Elemento 7");
         // Imprimir la lista
         lista.imprimir();
 
         // Eliminar elementos del principio de la lista
-        lista.removeFirst();
-        lista.removeFirst();
-        lista.removeFirst();
+        lista.eliminarPrimero();
+        lista.eliminarPrimero();
 
         // Imprimir la lista actualizada
         lista.imprimir();
 
         // Eliminar elementos del final de la lista
-        lista.removeLast();
-        lista.removeLast();
+        lista.eliminarUltimo();
+        lista.eliminarUltimo();
 
-
+        lista.eliminarPorIndice(1);
+        lista.eliminarPorDato("Elemento 3");
+        
+        lista.obtenerPorDato("Elemento 4");
+        lista.obtenerPorIndice(3);
+        
         // Imprimir la lista final
         lista.imprimir();
     }

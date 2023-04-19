@@ -20,7 +20,7 @@ public class ListaDoblementeEnlazadaCircula {
         return size;
     }
     
-   public void addFirst(Object dato) {
+   public void agregarAlInicio(Object dato) {
         Nodo nuevoNodo = new Nodo(dato);
         if (isEmpty()) {
             cabeza = nuevoNodo;
@@ -35,7 +35,7 @@ public class ListaDoblementeEnlazadaCircula {
         size++;
     }
 
-    public void addLast(Object dato) {
+    public void agregarAlFinal(Object dato) {
         Nodo nuevoNodo = new Nodo(dato);
         if (isEmpty()) {
             cabeza = nuevoNodo;
@@ -50,13 +50,13 @@ public class ListaDoblementeEnlazadaCircula {
         size++;
     }
 
-    public void addByIndex(int index, Object dato) {
+    public void agregarPorIndice(int index, Object dato) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Índice fuera de rango.");
         } else if (index == 0) {
-            addFirst(dato);
+            agregarAlInicio(dato);
         } else if (index == size) {
-            addLast(dato);
+            agregarAlFinal(dato);
         } else {
             Nodo nuevoNodo = new Nodo(dato);
             Nodo temp = getNodeByIndex(index);
@@ -69,7 +69,7 @@ public class ListaDoblementeEnlazadaCircula {
         }
     }
 
-    public void removeFirst() {
+    public void eliminarPrimero() {
         if (isEmpty()) {
             System.out.println("Lista vacia");
         } else if (size == 1) {
@@ -83,7 +83,7 @@ public class ListaDoblementeEnlazadaCircula {
         size--;
     }
 
-    public void removeLast() {
+    public void eliminarUltimo() {
         if (isEmpty()) {
             System.out.println("Lista vacia");
         } else if (size == 1) {
@@ -97,13 +97,13 @@ public class ListaDoblementeEnlazadaCircula {
         size--;
     }
 
-    public void removeByIndex(int index) {
+    public void eliminarPorIndice(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Índice fuera de rango.");
         } else if (index == 0) {
-            removeFirst();
+            eliminarPrimero();
         } else if (index == size - 1) {
-            removeLast();
+            eliminarUltimo();
         } else {
             Nodo temp = getNodeByIndex(index);
             Nodo anterior = temp.getAnterior();
@@ -114,7 +114,7 @@ public class ListaDoblementeEnlazadaCircula {
         }
     }
 
-    public void removeByData(Object dato) {
+    public void eliminarPorDato(Object dato) {
         if (isEmpty()) {
          System.out.println("Lista vacia");
         } else {
@@ -128,12 +128,12 @@ public class ListaDoblementeEnlazadaCircula {
             if (temp == null) {
                  System.out.println("no esta ese valor");
             } else {
-                removeByIndex(index);
+                eliminarPorIndice(index);
             }
         }
     }
 
-    public Object getByIndex(int index) {
+    public Object obtenerPorIndice(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Índice fuera de rango.");
         } else {
@@ -142,7 +142,7 @@ public class ListaDoblementeEnlazadaCircula {
         }
     }
 
-    public int getByData(Object dato) {
+    public int obtenerPorDato(Object dato) {
         Nodo temp = cabeza;
         int index = 0;
         while (temp != null && !temp.getDato().equals(dato)) {

@@ -115,13 +115,16 @@ public class ListaDoblementeEnlazada {
     public void eliminarAlFinal() {
         if (cabeza == null) {
             return;
-        }
-        if (cabeza.siguiente == cabeza) {
+        }else if (cabeza.siguiente == cabeza) {
             cabeza = null;
             return;
         }
-        //cabeza.anterior = cabeza.anterior.anterior;
-        cabeza.anterior.siguiente = cabeza;
+        Nodo aux = cabeza;
+        while (aux.getSiguiente() != null) {
+            aux = aux.getSiguiente();
+        }
+        
+        aux.getAnterior().setSiguiente(null);
     }
 
     public void eliminarPorDato(Object valor) {
@@ -130,14 +133,14 @@ public class ListaDoblementeEnlazada {
         }
         Nodo actual = cabeza;
         do {
-            if (actual.valor == valor) {
+            if (actual.getValor() == valor) {
                 if (actual == cabeza) {
                     eliminarAlInicio();
-                } else if (actual.siguiente == cabeza) {
+                } else if (actual.getSiguiente() == cola) {
                     eliminarAlFinal();
                 } else {
-                    actual.anterior.siguiente = actual.siguiente;
-                    actual.siguiente.anterior = actual.anterior;
+                    actual.getAnterior().setSiguiente(actual.getSiguiente());
+                    actual.getAnterior().setAnterior(actual.anterior);
                 }
                 return;
             }

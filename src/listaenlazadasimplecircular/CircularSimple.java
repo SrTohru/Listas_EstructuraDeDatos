@@ -22,7 +22,7 @@ public class CircularSimple {
         System.out.println("Lista inicial: ");
         lista.imprimir();
         
-             lista.eliminarPorDato(3);
+        lista.eliminarPorDato(3);
         System.out.println("Lista después de eliminar el dato 3: ");
         lista.imprimir();
         

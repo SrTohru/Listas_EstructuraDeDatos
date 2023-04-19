@@ -25,6 +25,8 @@ public class ListaEnlazada {
         return size == 0;
     }
 
+    
+    //Agregar al inicio
     public void addIni(Object d) {
         //1
         Nodo nNodo = new Nodo(d);
