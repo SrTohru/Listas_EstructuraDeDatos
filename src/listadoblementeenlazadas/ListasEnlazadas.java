@@ -7,48 +7,43 @@ package listadoblementeenlazadas;
 public class ListasEnlazadas {
 
     public static void main(String[] args) {
-        ListaDoblementeEnlazada lista = new ListaDoblementeEnlazada();
+        ListaDoblementeEnlazada lista1 = new ListaDoblementeEnlazada();
 
-        // Agregar algunos nodos al inicio
-        System.out.println("Agregando un valor al inicio");
-        lista.agregarAlInicio(3);
-        lista.agregarAlInicio(2);
-        lista.agregarAlInicio(1);
+       System.out.println("Agregar inicio");
+        lista1.agregarAlInicio(8);
+        lista1.agregarAlInicio(6);
+        System.out.println("Agregar fiinal");
+        lista1.agregarAlFinal("B");
+        lista1.agregarAlFinal("z");
+        lista1.agregarAlFinal("x");
+        
+        lista1.imprimir();
+        System.out.println("Agregar por indice");
+        lista1.insertarPorIndice(1, "ASD");
+       
+        System.out.println("Eliminando por indice");
+        lista1.eliminarPorIndice(0);
+        lista1.imprimir();
+        System.out.println("Eliminandopor dato");
+        lista1.eliminarPorDato("z");
+        lista1.imprimir();
 
-        lista.imprimir();
-        // Agregar algunos nodos al final
-        System.out.println("Agregando un valor al final");
-        lista.agregarAlFinal(4);
-        lista.agregarAlFinal(5);
-        lista.agregarAlFinal(6);
-        lista.imprimir();
-        // Agregar un nodo por índice
-        System.out.println("Agregando un valor por indice");
-        lista.agregarPorIndice(3, 10);
+        // Probamos el método buscarPorDato
+        System.out.println("Buscando por dato");
+        lista1.buscarPorDato("B");
+        lista1.imprimir();
+System.out.println("Eliminando inicio");
+        // Probamos el método eliminarAlInicio
+        lista1.eliminarAlInicio();
+        lista1.imprimir();
+System.out.println("Eliminandofinal");
+        // Probamos el método eliminarAlFinal
+        lista1.eliminarAlFinal();
+        lista1.imprimir();
 
-        // Imprimir la lista
-        System.out.println("Lista actual: ");
-        lista.imprimir();
-
-        // Eliminar el primer nodo
-        System.out.println("Eliminando un valor de inicio");
-        lista.eliminarAlInicio();
-
-        // Eliminar el último nodo
-         System.out.println("Eliminando un valor de final");
-        lista.eliminarAlFinal();
-        // Eliminar un nodo por dato
-        lista.eliminarPorDato(5);
-
-        // Imprimir la lista nuevamente
-        System.out.println("Lista actualizada: ");
-        lista.imprimir();
-
-        // Buscar un nodo por índice
-        System.out.println("Valor del nodo en el índice 2: " + lista.buscarPorIndice(2));
-
-        // Buscar un nodo por dato
-        System.out.println("¿El valor 4 está en la lista? " + lista.buscarPorDato(4));
+        // Imprimimos la lista enlazada resultante
+        System.out.println("Lista enlazada resultante:");
+        lista1.imprimir();
     }
 
 }

@@ -25,17 +25,11 @@ public class ListaEnlazada {
         return size == 0;
     }
 
-    //Agregar al inicio
     public void agregarAlInicio(Object d) {
-        //1
         Nodo nNodo = new Nodo(d);
-        //2
         Nodo nAux = this.nodoInicial;
-        //3
         this.nodoInicial = nNodo;
-        //4
         this.nodoInicial.setNext(nAux);
-        //5
         size++;
 
     }
@@ -140,7 +134,7 @@ public Nodo buscarPorDato(Object dato) {
         nodoActual = nodoActual.getNext();
     }
     
-    return null; // El dato no fue encontrado
+    return null;
 }
 
 public Nodo eliminarAlInicio() {
@@ -150,7 +144,6 @@ public Nodo eliminarAlInicio() {
 
 public void eliminarAlFinal() {
     if (nodoInicial.getNext() == null) {
-        // La lista tiene un solo nodo, lo eliminamos
         nodoInicial = null;
     } else {
         Nodo nodoActual = nodoInicial;

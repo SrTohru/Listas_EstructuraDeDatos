@@ -2,124 +2,124 @@ package listadoblementeenlazadas;
 
 public class ListaDoblementeEnlazada {
 
-    private Nodo cabeza;
-    private Nodo cola;
-    int tamaño = 0;
+    private Nodo nodoInicial;
+    private Nodo nodoFinal;
+    int size = 0;
 
     public ListaDoblementeEnlazada() {
-        this.cabeza = null;
-        this.cola = null;
+        this.nodoInicial = null;
+        this.nodoFinal = null;
     }
 
     public void agregarAlInicio(Object valor) {
         Nodo nuevoNodo = new Nodo(valor);
-        if (cabeza == null) {
-            cabeza = nuevoNodo;
-            cola = nuevoNodo;
-            tamaño++;
+        if (nodoInicial == null) {
+            nodoInicial = nuevoNodo;
+            nodoFinal = nuevoNodo;
+            size++;
         } else {
-            nuevoNodo.siguiente = cabeza;
-            cabeza.anterior = nuevoNodo;
-            cabeza = nuevoNodo;
-            tamaño++;
+            nuevoNodo.setSiguiente(nodoInicial);
+            nodoInicial.setAnterior(nuevoNodo);
+            nodoInicial = nuevoNodo;
+            size++;
         }
     }
 
     public void agregarAlFinal(Object valor) {
         Nodo nuevoNodo = new Nodo(valor);
-        if (cola == null) {
-            cabeza = nuevoNodo;
-            cola = nuevoNodo;
-            tamaño++;
+        if (nodoFinal == null) {
+            nodoInicial = nuevoNodo;
+            nodoFinal = nuevoNodo;
+            size++;
         } else {
-            nuevoNodo.anterior = cola;
-            cola.siguiente = nuevoNodo;
-            cola = nuevoNodo;
-            tamaño++;
+            nuevoNodo.setAnterior(nodoFinal);
+            nodoFinal.setSiguiente(nuevoNodo);
+            nodoFinal = nuevoNodo;
+            size++;
         }
     }
 
     public void eliminar(Object valor) {
-        Nodo actual = cabeza;
+        Nodo actual = nodoInicial;
 
         while (actual != null && actual.getValor() != valor) {
-            actual = actual.siguiente;
+            actual = actual.getSiguiente();
         }
 
         if (actual != null) {
-            if (actual == cabeza) {
-                cabeza = actual.siguiente;
-                tamaño--;
-                if (cabeza != null) {
-                    cabeza.anterior = null;
+            if (actual == nodoInicial) {
+                nodoInicial = actual.getSiguiente();
+                size--;
+                if (nodoInicial != null) {
+                    nodoInicial.setAnterior(null);
                 }
-            } else if (actual == cola) {
-                cola = actual.anterior;
-                tamaño--;
-                if (cola != null) {
-                    cola.siguiente = null;
+            } else if (actual == nodoFinal) {
+                nodoFinal = actual.getAnterior();
+                size--;
+                if (nodoFinal != null) {
+                    nodoFinal.setSiguiente(null);
                 }
             } else {
-                tamaño--;
-                actual.anterior.siguiente = actual.siguiente;
-                actual.siguiente.anterior = actual.anterior;
+                size--;
+                actual.getAnterior().setSiguiente(actual.siguiente);
+                actual.getSiguiente().setAnterior(actual.anterior);
             }
         }
     }
 
     public void agregarPorIndice(int indice, Object valor) {
-        if (indice < 0 || (indice > 0 && cabeza == null)) {
+        if (indice < 0 || (indice > 0 && nodoInicial == null)) {
             throw new IndexOutOfBoundsException("Índice fuera de rango");
         }
         if (indice == 0) {
             agregarAlInicio(valor);
-            tamaño++;
+            size++;
             return;
         }
-        Nodo actual = cabeza;
+        Nodo actual = nodoInicial;
         for (int i = 1; i < indice; i++) {
             if (actual == null) {
-                throw new IndexOutOfBoundsException("Índice fuera de rango");
+                throw new IndexOutOfBoundsException("Dato nulo");
             }
-            tamaño++;
-            actual = actual.siguiente;
+            size++;
+            actual = actual.getSiguiente();
         }
         if (actual == null) {
             agregarAlFinal(valor);
-            tamaño++;
+            size++;
             return;
         }
         Nodo nuevoNodo = new Nodo(valor);
-        nuevoNodo.anterior = actual;
-        nuevoNodo.siguiente = actual.siguiente;
+        nuevoNodo.setAnterior(actual);
+        nuevoNodo.setSiguiente(actual.getSiguiente());
         actual.siguiente.anterior = nuevoNodo;
         actual.siguiente = nuevoNodo;
     }
 
     public void eliminarAlInicio() {
-        if (cabeza != null) {
-            Nodo temp = cabeza;
-            cabeza = cabeza.siguiente;
-            if (cabeza != null) {
-                cabeza.anterior = null;
+        if (nodoInicial != null) {
+            Nodo temp = nodoInicial;
+            nodoInicial = nodoInicial.getSiguiente();
+            if (nodoInicial != null) {
+                nodoInicial.setAnterior(null);
             } else {
-                cola = null;
+                nodoFinal = null;
             }
-            temp.siguiente = null;
-            tamaño--;
+            temp.setSiguiente(null);
+            size--;
         } else {
             System.out.println("La lista está vacía. No se puede eliminar ningún elemento.");
         }
     }
 
     public void eliminarAlFinal() {
-        if (cabeza == null) {
+        if (nodoInicial == null) {
             return;
-        }else if (cabeza.siguiente == cabeza) {
-            cabeza = null;
+        }else if (nodoInicial.getSiguiente() == nodoInicial) {
+            nodoInicial = null;
             return;
         }
-        Nodo aux = cabeza;
+        Nodo aux = nodoInicial;
         while (aux.getSiguiente() != null) {
             aux = aux.getSiguiente();
         }
@@ -128,36 +128,36 @@ public class ListaDoblementeEnlazada {
     }
 
     public void eliminarPorDato(Object valor) {
-        if (cabeza == null) {
+        if (nodoInicial == null) {
             return;
         }
-        Nodo actual = cabeza;
+        Nodo actual = nodoInicial;
         do {
             if (actual.getValor() == valor) {
-                if (actual == cabeza) {
+                if (actual == nodoInicial) {
                     eliminarAlInicio();
-                } else if (actual.getSiguiente() == cola) {
+                } else if (actual.getSiguiente() == nodoFinal) {
                     eliminarAlFinal();
                 } else {
                     actual.getAnterior().setSiguiente(actual.getSiguiente());
-                    actual.getAnterior().setAnterior(actual.anterior);
+                    actual.getAnterior().setAnterior(actual.getAnterior());
                 }
                 return;
             }
             actual = actual.siguiente;
-        } while (actual != cabeza);
+        } while (actual != nodoInicial);
     }
 
     public Object buscarPorIndice(int indice) {
-        if (indice < 0 || (indice > 0 && cabeza == null)) {
+        if (indice < 0 || (indice > 0 && nodoInicial == null)) {
             throw new IndexOutOfBoundsException("Índice fuera de rango");
         }
-        Nodo actual = cabeza;
+        Nodo actual = nodoInicial;
         for (int i = 0; i < indice; i++) {
             if (actual == null) {
                 throw new IndexOutOfBoundsException("Índice fuera de rango");
             }
-            actual = actual.siguiente;
+            actual = actual.getSiguiente();
         }
         if (actual == null) {
             throw new IndexOutOfBoundsException("Índice fuera de rango");
@@ -166,21 +166,115 @@ public class ListaDoblementeEnlazada {
     }
 
     public boolean buscarPorDato(Object valor) {
-        if (cabeza == null) {
+        if (nodoInicial == null) {
             return false;
         }
-        Nodo actual = cabeza;
+        Nodo actual = nodoInicial;
         do {
-            if (actual.valor == valor) {
+            if (actual.getValor() == valor) {
                 return true;
             }
-            actual = actual.siguiente;
-        } while (actual != cabeza);
+            actual = actual.getSiguiente();
+        } while (actual != nodoInicial);
         return false;
     }
 
+    
+    public void eliminarPorIndice(int indice) {
+        // Si el índice es 0, eliminar el primer nodo
+        if (indice == 0) {
+            if (nodoInicial == null) {
+                return;
+            }
+            nodoInicial = nodoInicial.getSiguiente();
+            if (nodoInicial == null) {
+                nodoFinal = null;
+            } else {
+                nodoInicial.setAnterior(null);
+            }
+            size--;
+            return;
+        }
+
+        // Si el índice es igual al size de la lista - 1, eliminar el último nodo
+        if (indice == size - 1) {
+            if (nodoFinal == null) {
+                return;
+            }
+            nodoFinal = nodoFinal.getAnterior();
+            if (nodoFinal == null) {
+                nodoInicial = null;
+            } else {
+                nodoFinal.siguiente = null;
+            }
+            size--;
+            return;
+        }
+
+        // Si el índice está en medio de la lista, buscar el nodo en ese índice
+        Nodo nodoActual = nodoInicial;
+        int contador = 0;
+        while (nodoActual != null && contador < indice) {
+            nodoActual = nodoActual.siguiente;
+            contador++;
+        }
+
+        // Eliminar el nodo actual
+        nodoActual.anterior.siguiente = nodoActual.siguiente;
+        nodoActual.siguiente.anterior = nodoActual.anterior;
+        size--;
+    }
+
+    
+     public void insertarPorIndice( int indice, Object valor) {
+        Nodo nuevoNodo = new Nodo(valor);
+
+        // Si el índice es 0, insertar al principio de la lista
+        if (indice == 0) {
+            nuevoNodo.siguiente = nodoInicial;
+            if (nodoInicial != null) {
+                nodoInicial.anterior = nuevoNodo;
+            }
+            nodoInicial = nuevoNodo;
+            if (nodoFinal == null) {
+                nodoFinal = nuevoNodo;
+            }
+            size++;
+            return;
+        }
+
+        // Si el índice es igual al size de la lista, insertar al final de la lista
+        if (indice == size) {
+            nuevoNodo.anterior = nodoFinal;
+            if (nodoFinal != null) {
+                nodoFinal.siguiente = nuevoNodo;
+            }
+            nodoFinal = nuevoNodo;
+            if (nodoInicial == null) {
+                nodoInicial = nuevoNodo;
+            }
+            size++;
+            return;
+        }
+
+        // Si el índice está en medio de la lista, buscar el nodo en ese índice
+        Nodo nodoActual = nodoInicial;
+        int contador = 0;
+        while (nodoActual != null && contador < indice) {
+            nodoActual = nodoActual.siguiente;
+            contador++;
+        }
+
+        // Insertar el nuevo nodo antes del nodo actual
+        nuevoNodo.siguiente = nodoActual;
+        nuevoNodo.anterior = nodoActual.anterior;
+        nodoActual.anterior.siguiente = nuevoNodo;
+        nodoActual.anterior = nuevoNodo;
+        size++;
+    }
+    
     public void imprimir() {
-        Nodo actual = cabeza;
+        Nodo actual = nodoInicial;
         while (actual != null) {
             System.out.print(actual.valor + " ");
             actual = actual.siguiente;

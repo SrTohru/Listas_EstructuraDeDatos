@@ -40,7 +40,7 @@ public class DoblementeEnlazadaCircular {
         lista1.imprimir();
         System.out.println("Eliminando inicio");
         // Probamos el método eliminarAlInicio
-       // lista1.eliminarAlInicio();
+       lista1.eliminarAlInicio();
         lista1.imprimir();
         System.out.println("Eliminandofinal");
         // Probamos el método eliminarAlFinal

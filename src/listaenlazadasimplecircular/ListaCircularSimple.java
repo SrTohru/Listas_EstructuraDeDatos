@@ -2,123 +2,123 @@ package listaenlazadasimplecircular;
 
 public class ListaCircularSimple {
 
-    private Nodo cabeza;
-    private Nodo cola;
-    private int tamanio;
+    private Nodo nodoInciial;
+    private Nodo nodoFinal;
+    private int size;
 
     public ListaCircularSimple() {
-        this.cabeza = null;
-        this.cola = new Nodo("test");
-        this.tamanio = 0;
+        this.nodoInciial = null;
+        this.nodoFinal = null;
+        this.size = 0;
     }
 
     public void agregarAlInicio(Object dato) {
         Nodo nuevoNodo = new Nodo(dato);
-        if (cabeza == null) {
-            cabeza = nuevoNodo;
-            cola = nuevoNodo;
-            nuevoNodo.siguiente = cabeza;
+        if (nodoInciial == null) {
+            nodoInciial = nuevoNodo;
+            nodoFinal = nuevoNodo;
+            nuevoNodo.setSiguiente(nodoInciial);
         } else {
-            nuevoNodo.siguiente = cabeza;
-            cabeza = nuevoNodo;
-            cola.siguiente = cabeza;
+            nuevoNodo.setSiguiente(nodoInciial);
+            nodoInciial = nuevoNodo;
+            nodoFinal.setSiguiente(nodoInciial);
         }
     }
 
     public void agregarAlFinal(Object dato) {
         Nodo nuevoNodo = new Nodo(dato);
-        if (cabeza == null) {
-            cabeza = nuevoNodo;
-            cola = nuevoNodo;
-            nuevoNodo.siguiente = cabeza;
+        if (nodoInciial == null) {
+            nodoInciial = nuevoNodo;
+            nodoFinal = nuevoNodo;
+            nuevoNodo.setSiguiente(nodoInciial);
         } else {
-            cola.siguiente = nuevoNodo;
-            nuevoNodo.siguiente = cabeza;
-            cola = nuevoNodo;
+            nodoFinal.setSiguiente(nuevoNodo);
+            nuevoNodo.setSiguiente(nodoInciial);
+            nodoFinal = nuevoNodo;
         }
     }
 
     public void agregarPorIndice(int indice, Object dato) {
         Nodo nuevoNodo = new Nodo(dato);
-        if (cabeza == null) {
-            cabeza = nuevoNodo;
-            cola = nuevoNodo;
-            nuevoNodo.siguiente = cabeza;
+        if (nodoInciial == null) {
+            nodoInciial = nuevoNodo;
+            nodoFinal = nuevoNodo;
+            nuevoNodo.setSiguiente(nodoInciial);
         } else {
-            Nodo temp = cabeza;
+            Nodo temp = nodoInciial;
             for (int i = 0; i < indice - 1; i++) {
-                temp = temp.siguiente;
+                temp = temp.getSiguiente();
             }
-            nuevoNodo.siguiente = temp.siguiente;
-            temp.siguiente = nuevoNodo;
-            if (nuevoNodo.siguiente == cabeza) {
-                cola = nuevoNodo;
+            nuevoNodo.setSiguiente(temp.siguiente);
+            temp.setSiguiente(nuevoNodo);
+            if (nuevoNodo.getSiguiente() == nodoInciial) {
+                nodoFinal = nuevoNodo;
             }
         }
     }
 
     public void eliminarAlInicio() {
-        if (cabeza == null) {
+        if (nodoInciial == null) {
             return;
-        } else if (cabeza == cola) {
-            cabeza = null;
-            cola = null;
+        } else if (nodoInciial == nodoFinal) {
+            nodoInciial = null;
+            nodoFinal = null;
         } else {
-            cabeza = cabeza.siguiente;
-            cola.siguiente = cabeza;
+            nodoInciial = nodoInciial.getSiguiente();
+            nodoFinal.setSiguiente(nodoInciial);
         }
     }
 
     public void eliminarAlFinal() {
-        if (cabeza == null) {
+        if (nodoInciial == null) {
             return;
-        } else if (cabeza == cola) {
-            cabeza = null;
-            cola = null;
+        } else if (nodoInciial == nodoFinal) {
+            nodoInciial = null;
+            nodoFinal = null;
         } else {
-            Nodo temp = cabeza;
-            while (temp.siguiente != cola) {
-                temp = temp.siguiente;
+            Nodo temp = nodoInciial;
+            while (temp.getSiguiente() != nodoFinal) {
+                temp = temp.getSiguiente();
             }
-            temp.siguiente = cabeza;
-            cola = temp;
+            temp.setSiguiente(nodoInciial);
+            nodoFinal = temp;
         }
     }
 
     public void eliminarPorIndice(int indice) {
-        if (cabeza == null) {
+        if (nodoInciial == null) {
             return;
         } else {
-            Nodo temp = cabeza;
+            Nodo temp = nodoInciial;
             for (int i = 0; i < indice - 1; i++) {
-                temp = temp.siguiente;
+                temp = temp.getSiguiente();
             }
-            if (temp.siguiente == cabeza) {
-                cabeza = cabeza.siguiente;
-                cola.siguiente = cabeza;
-            } else if (temp.siguiente == cola) {
-                cola = temp;
-                temp.siguiente = cabeza;
+            if (temp.siguiente == nodoInciial) {
+                nodoInciial = nodoInciial.getSiguiente();
+                nodoFinal.setSiguiente(nodoInciial);
+            } else if (temp.siguiente == nodoFinal) {
+                nodoFinal = temp;
+                temp.setSiguiente(nodoInciial);
             } else {
-                temp.siguiente = temp.siguiente.siguiente;
+                temp.setSiguiente(temp.siguiente.siguiente);
             }
         }
     }
     
 public void eliminarPorDato(Object dato) {
-        if (cabeza == null) {
+        if (nodoInciial == null) {
             return;
         } else {
-            Nodo temp = cabeza;
+            Nodo temp = nodoInciial;
             Nodo prev = null;
             do {
                 if (temp.getDato() == dato) {
                     if (prev == null) {
-                        cabeza = cabeza.siguiente;
-                        cola.siguiente = cabeza;
-                    } else if (temp == cola) {
-                        prev.siguiente = cabeza;
-                        cola = prev;
+                        nodoInciial = nodoInciial.siguiente;
+                        nodoFinal.siguiente = nodoInciial;
+                    } else if (temp == nodoFinal) {
+                        prev.siguiente = nodoInciial;
+                        nodoFinal = prev;
                     } else {
                         prev.siguiente = temp.siguiente;
                     }
@@ -126,15 +126,15 @@ public void eliminarPorDato(Object dato) {
                 }
                 prev = temp;
                 temp = temp.siguiente;
-            } while (temp != cabeza);
+            } while (temp != nodoInciial);
         }
     }
 
     public Object buscarPorIndice(int indice) {
-        if (cabeza == null) {
+        if (nodoInciial == null) {
             return -1;
         } else {
-            Nodo temp = cabeza;
+            Nodo temp = nodoInciial;
             int contador = 0;
             do {
                 if (contador == indice) {
@@ -142,50 +142,37 @@ public void eliminarPorDato(Object dato) {
                 }
                 temp = temp.siguiente;
                 contador++;
-            } while (temp != cabeza);
+            } while (temp != nodoInciial);
             return -1;
         }
     }
 
     public Object buscarPorDato(Object dato) {
-        if (cabeza == null) {
+        if (nodoInciial == null) {
             return -1;
         } else {
-            Nodo temp = cabeza;
+            Nodo temp = nodoInciial;
             int contador = 0;
             do {
                 if (temp.dato == dato) {
                     return contador;
                 }
-                temp = temp.siguiente;
+                temp = temp.getSiguiente();
                 contador++;
-            } while (temp != cabeza);
+            } while (temp != nodoInciial);
             return -1;
         }
     }
-
-    public void listar() {
-        if (cabeza == null) {
-            return;
-        } else {
-            Nodo temp = cabeza;
-            do {
-                System.out.print(temp.dato + " ");
-                temp = temp.siguiente;
-            } while (temp != cabeza);
-            System.out.println();
-        }
-    }
-
+    
     public void imprimir() {
-        if (this.cabeza == null) {
+        if (nodoInciial == null) {
             System.out.println("La lista está vacía");
         } else {
-            Nodo actual = this.cabeza;
+            Nodo actual = nodoInciial;
             do {
-                System.out.print(actual.dato + " ");
-                actual = actual.siguiente;
-            } while (actual != this.cabeza);
+                System.out.print(actual.getDato() + " ");
+                actual = actual.getSiguiente();
+            } while (actual != nodoInciial);
             System.out.println();
         }
     }
