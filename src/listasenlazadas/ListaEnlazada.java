@@ -25,9 +25,8 @@ public class ListaEnlazada {
         return size == 0;
     }
 
-    
     //Agregar al inicio
-    public void addIni(Object d) {
+    public void agregarAlInicio(Object d) {
         //1
         Nodo nNodo = new Nodo(d);
         //2
@@ -41,6 +40,44 @@ public class ListaEnlazada {
 
     }
 
+    public void agregarAlFinal(Object o) {
+        Nodo nNodo = new Nodo(o);
+        Nodo aux = this.nodoInicial;
+        while (aux.getNext() != null) {
+            aux = aux.getNext();
+
+        }
+        aux.setNext(nNodo);
+        size++;
+
+    }
+
+
+  public void insertarPorIndice(int indice, Object dato) {
+    Nodo nuevoNodo = new Nodo(dato);
+    
+    if (indice == 0) {
+        nodoInicial = nuevoNodo;
+        return;
+    }
+    
+    Nodo nodoActual = nodoInicial;
+    int indiceActual = 0;
+    
+    while (nodoActual.getNext() != null && indiceActual < indice - 1) {
+        nodoActual = nodoActual.getNext();
+        indiceActual++;
+    }
+    
+    if (indiceActual == indice - 1) {
+        nuevoNodo.setNext(nodoActual.getNext());
+        nodoActual.setNext(nuevoNodo);
+    } else {
+        throw new IndexOutOfBoundsException("Índice fuera de rango");
+    }
+}
+
+    
     public void eliminarPorDato(Object dato) {
 
         Nodo aux = nodoInicial;
@@ -66,11 +103,11 @@ public class ListaEnlazada {
             auxAnterior = aux;
             aux = aux.getNext();
         }
-        
-        if(auxAnterior != null){
+
+        if (auxAnterior != null) {
             auxAnterior.setNext(aux.getNext());
             size--;
-        }else{
+        } else {
             nodoInicial = aux.getNext();
             size--;
         }
@@ -93,17 +130,38 @@ public class ListaEnlazada {
         return aux;
     }
 
-    public Object search(Nodo n) {
-        return null;
+public Nodo buscarPorDato(Object dato) {
+    Nodo nodoActual = nodoInicial;
+    
+    while (nodoActual != null) {
+        if (nodoActual.getData().equals(dato)) {
+            return nodoActual;
+        }
+        nodoActual = nodoActual.getNext();
     }
+    
+    return null; // El dato no fue encontrado
+}
 
-    public void removeIni() {
+public Nodo eliminarAlInicio() {
+    nodoInicial = nodoInicial.getNext();
+    return nodoInicial;
+}
 
+public void eliminarAlFinal() {
+    if (nodoInicial.getNext() == null) {
+        // La lista tiene un solo nodo, lo eliminamos
+        nodoInicial = null;
+    } else {
+        Nodo nodoActual = nodoInicial;
+        
+        while (nodoActual.getNext().getNext() != null) {
+            nodoActual = nodoActual.getNext();
+        }
+        
+        nodoActual.setNext(null);
     }
-
-    public void removeByIndex(int index) {
-
-    }
+}
 
     public Nodo getNodoInicial() {
         return nodoInicial;
@@ -111,17 +169,5 @@ public class ListaEnlazada {
 
     public void printList() {
         System.out.println(this.nodoInicial);
-    }
-
-    public void add2End(Object o) {
-        Nodo nNodo = new Nodo(o);
-        Nodo aux = this.nodoInicial;
-        while (aux.getNext() != null) {
-            aux = aux.getNext();
-
-        }
-        aux.setNext(nNodo);
-        size++;
-
     }
 }

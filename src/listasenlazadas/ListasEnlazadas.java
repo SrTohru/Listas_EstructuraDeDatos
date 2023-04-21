@@ -15,18 +15,39 @@ public class ListasEnlazadas {
      */
     public static void main(String[] args) {
         ListaEnlazada lista1 = new ListaEnlazada(new Nodo("n1"));
-        lista1.addIni(8);
-        lista1.addIni(6);
-        lista1.add2End("z");
-        lista1.add2End("x");
+        System.out.println("Agregar inicio");
+        lista1.agregarAlInicio(8);
+        lista1.agregarAlInicio(6);
+        System.out.println("Agregar fiinal");
+        lista1.agregarAlFinal("z");
+        lista1.agregarAlFinal("x");
 
         lista1.printList();
-        System.out.println(lista1.size());
-        System.out.println("Eliminando");
+        System.out.println("Agregar por indice");
+        lista1.insertarPorIndice(1, "ASD");
+       
+        System.out.println("Eliminando por indice");
         lista1.eliminarPorIndice(0);
         lista1.printList();
-        System.out.println("Eliminando");
-       lista1.eliminarPorDato("z");
+        System.out.println("Eliminandopor dato");
+        lista1.eliminarPorDato("z");
+        lista1.printList();
+
+        // Probamos el método buscarPorDato
+        System.out.println("Buscando por dato");
+        lista1.buscarPorDato("B");
+        lista1.printList();
+System.out.println("Eliminando inicio");
+        // Probamos el método eliminarAlInicio
+        lista1.eliminarAlInicio();
+        lista1.printList();
+System.out.println("Eliminandofinal");
+        // Probamos el método eliminarAlFinal
+        lista1.eliminarAlFinal();
+        lista1.printList();
+
+        // Imprimimos la lista enlazada resultante
+        System.out.println("Lista enlazada resultante:");
         lista1.printList();
     }
 

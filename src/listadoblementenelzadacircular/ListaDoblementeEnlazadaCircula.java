@@ -19,8 +19,8 @@ public class ListaDoblementeEnlazadaCircula {
     public int size() {
         return size;
     }
-    
-   public void agregarAlInicio(Object dato) {
+
+    public void agregarAlInicio(Object dato) {
         Nodo nuevoNodo = new Nodo(dato);
         if (isEmpty()) {
             cabeza = nuevoNodo;
@@ -116,17 +116,17 @@ public class ListaDoblementeEnlazadaCircula {
 
     public void eliminarPorDato(Object dato) {
         if (isEmpty()) {
-         System.out.println("Lista vacia");
+            System.out.println("Lista vacia");
         } else {
             Nodo temp = cabeza;
             int index = 0;
-    
-               while (temp != null && !temp.getDato().equals(dato)) {
+
+            while (temp != null && !(temp.getDato() == dato)) {
                 temp = temp.getSiguiente();
                 index++;
             }
             if (temp == null) {
-                 System.out.println("no esta ese valor");
+                System.out.println("no esta ese valor");
             } else {
                 eliminarPorIndice(index);
             }
@@ -142,7 +142,7 @@ public class ListaDoblementeEnlazadaCircula {
         }
     }
 
-    public int obtenerPorDato(Object dato) {
+    public Object obtenerPorDato(Object dato) {
         Nodo temp = cabeza;
         int index = 0;
         while (temp != null && !temp.getDato().equals(dato)) {
@@ -150,7 +150,7 @@ public class ListaDoblementeEnlazadaCircula {
             index++;
         }
         if (temp == null) {
-           System.out.println("no esta ese valor");
+            System.out.println("no esta ese valor");
         } else {
             return index;
         }
@@ -170,8 +170,8 @@ public class ListaDoblementeEnlazadaCircula {
         }
         return temp;
     }
-    
-        public void imprimir() {
+
+    public void imprimir() {
         if (this.cabeza == null) {
             System.out.println("La lista está vacía");
         } else {
@@ -180,10 +180,6 @@ public class ListaDoblementeEnlazadaCircula {
                 System.out.print(actual.getDato() + " ");
                 actual = actual.getSiguiente();
             } while (actual != this.cabeza);
-            System.out.println();
         }
     }
 }
-    
-
-

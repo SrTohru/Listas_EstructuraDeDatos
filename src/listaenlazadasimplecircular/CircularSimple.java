@@ -11,36 +11,41 @@ package listaenlazadasimplecircular;
 public class CircularSimple {
 
     public static void main(String[] args) {
-         ListaCircularSimple lista = new ListaCircularSimple();
-        
-        lista.agregarAlFinal(1);
-        lista.agregarAlFinal(2);
-        lista.agregarAlFinal(3);
-        lista.agregarAlFinal(4);
-        lista.agregarAlFinal(5);
-        
-        System.out.println("Lista inicial: ");
-        lista.imprimir();
-        
-        lista.eliminarPorDato(3);
-        System.out.println("Lista después de eliminar el dato 3: ");
-        lista.imprimir();
-        
-        System.out.println("El elemento en el índice 2 es: " + lista.buscarPorIndice(2));
-        System.out.println("El elemento con el valor 4 está en el índice: " + lista.buscarPorDato(4));
-        
-        lista.agregarPorIndice(2, 7);
-        System.out.println("Lista después de agregar el valor 7 en el índice 2: ");
-        lista.imprimir();
-                
-        lista.eliminarAlInicio();
-        System.out.println("Lista después de eliminar al inicio: ");
-        lista.imprimir();
-        
-        lista.eliminarAlFinal();
-        System.out.println("Lista después de eliminar al final: ");
-        lista.imprimir();
+        ListaCircularSimple lista1 = new ListaCircularSimple();
+
+        System.out.println("Agregar inicio");
+        lista1.agregarAlInicio(8);
+        lista1.agregarAlInicio(6);
+        System.out.println("Agregar fiinal");
+        lista1.agregarAlFinal("z");
+        lista1.agregarAlFinal("x");
+
+        lista1.imprimir();
+        System.out.println("Agregar por indice");
+        lista1.agregarPorIndice(1, "ASD");
+
+        System.out.println("Eliminando por indice");
+        lista1.eliminarPorIndice(0);
+        lista1.imprimir();
+        System.out.println("Eliminandopor dato");
+        lista1.eliminarPorDato("z");
+        lista1.imprimir();
+
+        // Probamos el método buscarPorDato
+        System.out.println("Buscando por dato");
+        lista1.buscarPorDato("B");
+        lista1.imprimir();
+        System.out.println("Eliminando inicio");
+        // Probamos el método eliminarAlInicio
+        lista1.eliminarAlInicio();
+        lista1.imprimir();
+        System.out.println("Eliminandofinal");
+        // Probamos el método eliminarAlFinal
+        lista1.eliminarAlFinal();
+        lista1.imprimir();
+
+        // Imprimimos la lista enlazada resultante
+        System.out.println("Lista enlazada resultante:");
+        lista1.imprimir();
     }
 }
-
-    

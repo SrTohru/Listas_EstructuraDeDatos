@@ -2,19 +2,19 @@ package listaenlazadasimplecircular;
 
 public class Nodo {
 
-    public int dato;
+    public Object dato;
     public Nodo siguiente;
 
-    public Nodo(int dato) {
+    public Nodo(Object dato) {
         this.dato = dato;
         this.siguiente = null;
     }
 
-    public int getDato() {
+    public Object getDato() {
         return dato;
     }
 
-    public void setDato(int dato) {
+    public void setDato(Object dato) {
         this.dato = dato;
     }
 

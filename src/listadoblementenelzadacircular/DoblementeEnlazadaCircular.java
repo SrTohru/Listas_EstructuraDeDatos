@@ -14,41 +14,42 @@ public class DoblementeEnlazadaCircular {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ListaDoblementeEnlazadaCircula lista = new ListaDoblementeEnlazadaCircula();
+        ListaDoblementeEnlazadaCircula lista1 = new ListaDoblementeEnlazadaCircula();
+    
+        System.out.println("Agregar inicio");
+        lista1.agregarAlInicio(8);
+        lista1.agregarAlInicio(6);
+        System.out.println("Agregar fiinal");
+        lista1.agregarAlFinal("z");
+        lista1.agregarAlFinal("x");
 
-        // Agregar elementos al principio de la lista
-        lista.agregarAlInicio("Elemento 1");
-        lista.agregarAlInicio("Elemento 2");
-        lista.agregarAlInicio("Elemento 3");
+        lista1.imprimir();
+        System.out.println("Agregar por indice");
+       // lista1.insertarPorIndice(1, "ASD");
 
-        // Agregar elementos al final de la lista
-        lista.agregarAlFinal("Elemento 4");
-        lista.agregarAlFinal("Elemento 5");
-        lista.agregarAlFinal("Elemento 6");
+        System.out.println("Eliminando por indice");
+        lista1.eliminarPorIndice(0);
+        lista1.imprimir();
+        System.out.println("Eliminandopor dato");
+        lista1.eliminarPorDato("z");
+        lista1.imprimir();
 
-        lista.agregarPorIndice(3, "Elemento 7");
-        // Imprimir la lista
-        lista.imprimir();
+        // Probamos el método buscarPorDato
+        System.out.println("Buscando por dato");
+       // lista1.buscarPorDato("B");
+        lista1.imprimir();
+        System.out.println("Eliminando inicio");
+        // Probamos el método eliminarAlInicio
+       // lista1.eliminarAlInicio();
+        lista1.imprimir();
+        System.out.println("Eliminandofinal");
+        // Probamos el método eliminarAlFinal
+       // lista1.eliminarAlFinal();
+        lista1.imprimir();
 
-        // Eliminar elementos del principio de la lista
-        lista.eliminarPrimero();
-        lista.eliminarPrimero();
-
-        // Imprimir la lista actualizada
-        lista.imprimir();
-
-        // Eliminar elementos del final de la lista
-        lista.eliminarUltimo();
-        lista.eliminarUltimo();
-
-        lista.eliminarPorIndice(1);
-        lista.eliminarPorDato("Elemento 3");
-        
-        lista.obtenerPorDato("Elemento 4");
-        lista.obtenerPorIndice(3);
-        
-        // Imprimir la lista final
-        lista.imprimir();
+        // Imprimimos la lista enlazada resultante
+        System.out.println("Lista enlazada resultante:");
+        lista1.imprimir();
     }
 
 }
